@@ -31,9 +31,9 @@ Mosf of the keys below are measured in log10; first entry is the median of the p
 
 ```
 gal_mass        : galaxy mass from photometry (Msun)
-sigma           : velocity dispersion, from SDSS or literature (km/s)
+sigma           : velocity dispersion, if available (km/s)
 plat_lum_exp    : plateau nu*Lnu at nu_kc when using exponential for early-part (erg/s)
-plat_lum_exp_gr : plateau nuLnu at nu_gr when using exponential for early-part (erg/s)
+plat_lum_exp_gr : plateau nu*Lnu at nu_gr when using exponential for early-part (erg/s)
 nu_kc           : rest-frame frequency used for model curves (Hz), except for *_gr
 nu_gr           : "optical" frequency used for plat_lum_exp_gr (6e14 Hz)
 ...
