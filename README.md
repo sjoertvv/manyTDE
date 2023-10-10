@@ -2,7 +2,7 @@
 Collection of optically-selected TDEs, with black hole mass measurements based on their late-time plateau luminosity. 
 
 ## Paper
-This repository containts the data that was used in [https://ui.adsabs.harvard.edu/abs/2023arXiv230808255M/abstract][Mummery, van Velzen et al. 2023]. Please cite this paper if you use these products. 
+This repository containts the data that was used in [Mummery, van Velzen et al. 2023](https://ui.adsabs.harvard.edu/abs/2023arXiv230808255M/abstract). Please cite this paper if you use these products. 
 
 ## Catalog
 The catalog of TDEs is contained in a Python pickle file. An script to read and reproduce some key plots from the paper is provided. 
@@ -23,7 +23,9 @@ For all TDEs we also provide the optical/UV light curves in the `/data/lightcurv
 `>> python3 plot_example_lightcurve.py`
 
 ## Dynamical black hole mass measurements 
-The dynamical black hole mass measurements from the review by [https://ui.adsabs.harvard.edu/abs/2020ARA%26A..58..257G/abstract][Greene, Strader, & Ho (2020)] are stored in `data/dynamical/`
+The dynamical black hole mass measurements from the review by [Greene, Strader, & Ho (2020)](https://ui.adsabs.harvard.edu/abs/2020ARA%26A..58..257G/abstract) are stored in `data/dynamical/`
+
+***
 
 # Full catalog describtion
 
