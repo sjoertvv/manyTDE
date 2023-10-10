@@ -7,7 +7,7 @@ This repository containts the data that was used in [Mummery, van Velzen et al. 
 ## Catalog
 The catalog of TDEs is contained in a Python pickle file. An script to read and reproduce some key plots from the paper is provided. 
 
-`>> python3 read_catalog_plot.py`
+`>> python3 read_catalog_and_plot.py`
 
 This catalog contains: 
 -  the basic info (name, coordinates, redshift);
