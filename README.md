@@ -27,14 +27,14 @@ The dynamical black hole mass measurements from the review by [https://ui.adsabs
 
 # Full catalog describtion
 
-The keys below are measured in log10; first entry is the median of the posterior, the second, third and the 68% CL interval (lower, upper).
+Mosf of the keys below are measured in log10; first entry is the median of the posterior, the second, third and the 68% CL interval (lower, upper).
 
 ```
-gal_mass		    : galaxy mass from photometry (Msun)
-sigma			      : velocity dispersion, from SDSS or literature (km/s)
-plat_lum_exp	  : plateau nu*Lnu at nu_kc when using exponential for early-part (erg/s)
-plat_lum_exp_gr	: plateau nuLnu at nu_gr when using exponential for early-part (erg/s)
-nu_kc	 		      : rest-frame luminosoty used for mode curves (Hz), except for *_gr
+gal_mass        : galaxy mass from photometry (Msun)
+sigma           : velocity dispersion, from SDSS or literature (km/s)
+plat_lum_exp    : plateau nu*Lnu at nu_kc when using exponential for early-part (erg/s)
+plat_lum_exp_gr : plateau nuLnu at nu_gr when using exponential for early-part (erg/s)
+nu_kc           : rest-frame frequency used for model curves (Hz), except for *_gr
 nu_gr           : "optical" frequency used for plat_lum_exp_gr (6e14 Hz)
 ...
 ```
