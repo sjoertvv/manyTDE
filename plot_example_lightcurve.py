@@ -3,7 +3,7 @@ Read the lightcurve data and plot
 
 This shows the data at the full time resolution (no binning). 
 
-The flux plotted here is not corrected for Galactic extinction 
+This example also shows how to correct the TDE light for extinction
 '''
 import json
 
@@ -26,8 +26,12 @@ mjd0 = tde_data['peak_mjd']
 plt.clf()
 for flt in tde_data['lightcurve']['filters']:
 	idx = lc_rec['filter']==flt
+
+	flux = lc_rec[idx]['flux_Jy']*1e6
+	flux_corr = flux / tde_data['extinction']['linear_extinction'][flt] 
+
 	plt.errorbar(lc_rec[idx]['mjd']-mjd0, 
-			lc_rec[idx]['flux_Jy']*1e6, 
+			flux_corr, 
 			lc_rec[idx]['e_flux_Jy']*1e6,
 			fmt=marker_dict[flt], 
 			alpha=0.9,
