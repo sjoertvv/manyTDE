@@ -27,7 +27,7 @@ The dynamical black hole mass measurements from the review by [Greene, Strader, 
 
 ***
 
-# Full catalog describtion
+## Full catalog describtion
 
 Mosf of the keys below are measured in log10; first entry is the median of the posterior, the second, third and the 68% CL interval (lower, upper).
 
