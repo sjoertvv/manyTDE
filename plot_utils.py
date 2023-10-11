@@ -1,4 +1,6 @@
-# manual entry of color
+import matplotlib.pyplot as plt 
+
+# manual entry of color dict
 lc_color_dict = {}
 for surv in ['ztf','ps','sdss']:
   lc_color_dict['g.'+surv] = 'g'
@@ -34,3 +36,28 @@ marker_dict['r.ztf'] = 's'
 marker_dict['F125LP'] = '*'
 marker_dict['F150LP'] = 'd'
 marker_dict['F225W'] = '*'
+
+""" Makes the figures have the same formatting as the paper. """
+plt.rc('text', usetex=True)
+plt.rc('font', family='serif')
+plt.rcParams['xtick.labelsize'] = 18
+plt.rcParams['ytick.labelsize'] = 18
+plt.rcParams['font.size'] = 20
+plt.rcParams['legend.framealpha'] = 1
+plt.rcParams['legend.edgecolor'] = 'k'
+plt.rcParams['lines.linewidth'] = 2
+plt.rcParams['figure.figsize'] = [12, 9]
+plt.rcParams['ytick.right'] = True
+plt.rcParams['xtick.top'] = True
+plt.rcParams['ytick.minor.visible'] = True
+plt.rcParams['xtick.minor.visible'] = True
+plt.rcParams['ytick.direction'] = 'in'
+plt.rcParams['xtick.direction'] = 'in'
+plt.rcParams['ytick.major.size'] = 10
+plt.rcParams['ytick.major.width'] = 1
+plt.rcParams['ytick.minor.size'] = 4
+plt.rcParams['xtick.major.size'] = 10
+plt.rcParams['xtick.major.width'] = 1
+plt.rcParams['xtick.minor.size'] = 4
+plt.rcParams['savefig.format'] = 'pdf'
+plt.rcParams['savefig.bbox'] = 'tight'
