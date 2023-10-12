@@ -4,9 +4,9 @@ Collection of 63 optically-selected TDEs, with black hole mass measurements base
 ## Paper
 This repository containts the data that was used in [Mummery, van Velzen et al. 2023](https://ui.adsabs.harvard.edu/abs/2023arXiv230808255M/abstract). Please cite this paper if you use these products. 
 
-## Catalog
-The main catalog is stored in a Python pickle file. A script to read and reproduce some key figures from the paper is provided. 
-We split the catalogs into those TDEs with and without measured plateaus for convinience. 
+## Catalogue
+The main catalogue is stored in a Python pickle file. A script to read and reproduce some key figures from the paper is provided. 
+We split the catalogues into those TDEs with and without measured plateaus for convinience. 
 
 `>> python3 read_catalog_and_plot.py`
 
@@ -34,9 +34,10 @@ Scripts for loading and plotting these data can be found in
 
 ***
 
-## Full catalog describtion
+## Full catalogue describtion
 
 All of the physical parameters below are measured in log10; first entry is the median of the posterior. The second and third columns are the 68% confidence level interval, ordered by (lower, upper).
+The first 5 entries (Name, Redshift, RA, DEC and Spectral type) do not have uncertainties and are one dimensional. 
 
 ```
 Name                                 : TDE name
@@ -44,14 +45,14 @@ Redshift                             : Redshift (dimensionless)
 RA                                   : RA of source 
 DEC                                  : DEC of source
 Spectral type                        : TDE spectral type, either H, H+He, He, Featureless or Unknown.
-Plateau u-band                       : vL_v of the plateau at v = 10^15 Hz. (Rest frame)
-Plateau g-band                       : vL_v of the plateau at v = 6 x 10^14 Hz. (Rest frame)
-Peak u-band                          : vL_v at peak at v = 10^15 Hz. (Rest frame)
-Peak g-band                          : vL_v at peak at v = 6 x 10^14 Hz. (Rest frame)
-Peak bolometric                      : Peak bolometric luminosity (from black body fit).
+Plateau u-band                       : vL_v of the plateau at v = 10^15 Hz. (Rest frame, erg/s)
+Plateau g-band                       : vL_v of the plateau at v = 6 x 10^14 Hz. (Rest frame, erg/s)
+Peak u-band                          : vL_v at peak at v = 10^15 Hz. (Rest frame, erg/s)
+Peak g-band                          : vL_v at peak at v = 6 x 10^14 Hz. (Rest frame, erg/s)
+Peak bolometric                      : Peak bolometric luminosity (from black body fit, erg/s).
 Peak temperature                     : Temperature (K) from blackbody fit to early times.
 Peak radius                          : Radius (cm) from blackbody fit to early times.
-Energy radiated g-band               : Energy radiated in the early time g-band light curve.
+Energy radiated g-band               : Energy radiated in the early time g-band light curve (erg).
 Rise timescale                       : Rise timescale parameter (days) from early time model.
 Decay timescale                      : Exponential decay timescale parameter (days) from early time model.
 Galaxy mass                          : Mass of host galaxy from spectroscopic fitting (Solar masses). 
