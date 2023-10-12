@@ -1,6 +1,12 @@
+"""
+This sets some default plot preferences. 
+
+Figures made after calling this script will match those in the paper.
+"""
+
 import matplotlib.pyplot as plt 
 
-# manual entry of color dict
+# Manual entry of color dict
 lc_color_dict = {}
 for surv in ['ztf','ps','sdss']:
   lc_color_dict['g.'+surv] = 'g'

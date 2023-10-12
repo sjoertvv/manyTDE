@@ -1,74 +1,116 @@
+"""
+Authors:  Andrew Mummery and Sjoert van Velzen. 
+
+Functions for loading and plotting derived quantities from the paper. 
+
+Loading: 
+    load_dicts() loads the raw dictionaries of derived quantities from the paper. 
+
+    get_pars(k) returns numpy arrays of a specific (labelled by k) parameter from the paper. 
+
+Plotting:
+    plot_me(kx, ky) plots the variables with labels kx and ky against each other, 
+    and includes the options of running analysis scripts from the paper.  
+
+main() shows some examples from the paper. 
+
+"""
+
+
 import numpy as np 
 import matplotlib.pyplot as plt
 import pickle 
-import emcee 
 import corner 
-from scipy.stats import linregress, kendalltau
-from scipy.optimize import minimize 
-import plot_utils
+
+
+import plot_utils## plot styling 
+import analysis_functions## analysis functions from the paper 
 
 def main():
+    ## Plot galaxy mass versus black hole mass measured form the TDE plateau luminosity. 
+    kx = 'Galaxy mass'## X-variable
+    ky = 'Plateau black hole mass'## Y-variable. 
 
-    k1 = 'Galaxy mass'
-    k2 = 'Plateau black hole mass'
-
-    f = plot_me(k1, k2, 
-                       do_fit=True, 
-                       plot_fit=True, 
-                       do_mcmc=True, 
-                       plot_mcmc_samples=True, 
-                       plot_mcmc_corner=True, 
-                       plot_mcmc_walkers=True,
+    f = plot_me(kx, ky, 
+                       do_fit=True, ### Also fit a straight line, and report kendall tau statistics. 
+                       do_mcmc=True, ## Run an mcmc chain 
                        quiet=False, 
-                       mcmc_scale=11,
+                       mcmc_scale=6, ## Normalise plateau black hole mass by 10^6 M_sun. 
                        nstep_mcmc=10000)
 
 
-    x, _, _ = get_pars(k1)
-    y, _, _ = get_pars(k2)
+    ## Or you might want to learn about all the TDEs in the sample. 
     n = get_pars('Name')
     ra = get_pars('RA')
     dec = get_pars('DEC')
     z = get_pars('Redshift')
     sp = get_pars('Spectral type')
 
+    print('\n In this sample we have the following TDEs, with parameters', 
+          '\n', 
+           'Name    RA     DEC     Redshift    Spectral type',
+           '\n')
+    
     for i  in range(len(n)):
-        print(n[i], ra[i], dec[i], z[i], sp[i])
+        str_ = "%s     %s     %s     %s     %s \n"%(n[i], ra[i], dec[i], z[i], sp[i])
+        print(str_)
 
+
+    ## Or you might want to do your own analsis.  
+    x, x_err_low, x_err_up = get_pars(kx)
+    y, y_err_low, y_err_up = get_pars(ky)
 
     fig = plt.figure()
     ax = fig.add_subplot()
 
-    ax.plot(x, y, 'o')
+    i_plot = (x>0) * (y>0)# only plot TDEs with relevant data. 
+
+    ax.plot(x[i_plot], y[i_plot], 'o')
 
     plt.show()
 
 
 
-def get_pars(k1):
+def get_pars(k):
+    """
+    Inputs: 
+        k = label of the variable you want from the Table in the paper. 
+    
+    Returns: 
+        vals = the values of the variable. 
+        err_low = the lower error on the variable. 
+        err_up = the upper error on the variable. 
+    
+    Notes:
+        Quantities returned in log_10, and errors represent the 68% confidence level interval. 
+
+        If k is one of 'Name', 'RA', 'DEC', 'Redshift', 'Spectral type', then no errors returned. 
+
+    """
+
     dp, dn = load_dicts()
 
-    if k1 in ['Name', 'RA', 'DEC', 'Redshift', 'Spectral type']:
+    if k in ['Name', 'RA', 'DEC', 'Redshift', 'Spectral type']:
         vals = []
-        for n in dp[k1]:
+        for n in dp[k]:
             vals += [n]
-        for n in dn[k1]:
+        for n in dn[k]:
             vals += [n]
         return vals
 
 
-    val = np.asarray([dp[k1][i][0] for i in range(len(dp[k1]))])
-    err_down = np.asarray([dp[k1][i][1] for i in range(len(dp[k1]))])
-    err_up = np.asarray([dp[k1][i][2] for i in range(len(dp[k1]))])
+    val = np.asarray([dp[k][i][0] for i in range(len(dp[k]))])
+    err_down = np.asarray([dp[k][i][1] for i in range(len(dp[k]))])
+    err_up = np.asarray([dp[k][i][2] for i in range(len(dp[k]))])
     
-    tmp = np.asarray([0 for _ in range(len(dn[k1]))])
-    tmp_err_down = np.asarray([0 for _ in range(len(dn[k1]))])
-    tmp_err_up = np.asarray([0 for _ in range(len(dn[k1]))])
+    tmp = np.asarray([0 for _ in range(len(dn[k]))])
+    tmp_err_down = np.asarray([0 for _ in range(len(dn[k]))])
+    tmp_err_up = np.asarray([0 for _ in range(len(dn[k]))])
 
-    if ('Plateau' not in k1): 
-        tmp = np.asarray([dn[k1][i][0] for i in range(len(dn[k1]))])
-        tmp_err_down = np.asarray([dn[k1][i][1] for i in range(len(dn[k1]))])
-        tmp_err_up = np.asarray([dn[k1][i][2] for i in range(len(dn[k1]))])
+    if ('Plateau' not in k): 
+        tmp = np.asarray([dn[k][i][0] for i in range(len(dn[k]))])
+        tmp_err_down = np.asarray([dn[k][i][1] for i in range(len(dn[k]))])
+        tmp_err_up = np.asarray([dn[k][i][2] for i in range(len(dn[k]))])
 
     val = np.append(val, tmp)
     err_down = np.append(err_down, tmp_err_down)
@@ -85,21 +127,65 @@ def load_dicts():
     return dp, dn
 
 def plot_me(kx, ky, 
+            quiet=True, 
+
             lx=None, 
             ly=None, 
             cp='darkblue', 
             cn='red',
+
             do_fit=False, 
-            plot_fit=False, 
-            quiet=True, 
+            plot_fit=None, 
+
             do_mcmc=False,
-            plot_mcmc_corner=True,
-            plot_mcmc_samples=False,
-            plot_mcmc_walkers=True,
+            plot_mcmc_corner=None,
+            plot_mcmc_samples=None,
+            plot_mcmc_walkers=None,
             nstep_mcmc=10000,
             nwalkers_mcmc=32,
             mcmc_scale=0):
     
+    """
+    Inputs: 
+        kx = label of the x-variable you want from the Table in the paper. 
+        ky = label of the y-variable you want from the Table in the paper. 
+
+        lx = x-axis label for plots, if None then uses kx.
+        ly = y-axis label for plots, if None then uses ky.
+
+        cp = color of markers for TDEs with plateaus. 
+        cn = color of markers for TDEs without plateaus. 
+
+        do_fit = run analys_functions.simple_fit() on the data. 
+        plot_fit = plot best fitting straight line to the data.  If None then set to do_fit. 
+
+        do_mcmc = run analys_functions.mcmc_fit() on the data. 
+        plot_mcmc_corner = corner plot of MCMC results. If None then set to do_mcmc. 
+        plot_mcmc_samples = plot some samples of MCMC results on the data. If None then set to do_mcmc. 
+        plot_mcmc_walkers = show walker evolution from MCMC results. If None then set to do_mcmc. 
+
+        nstep_mcmc, nwalkers_mcmc and mcmc_scale are parameters from analys_functions.mcmc_fit(). 
+
+        quiet = passed to analys_functions.simple_fit(). If False prints analysis results.  
+
+    
+    Returns: 
+        Up to 3 figures (depending on settings), of various results for parameters x vs y. 
+
+
+    """
+
+    if plot_fit is None:
+        plot_fit = do_fit
+    
+    if plot_mcmc_corner is None:
+        plot_mcmc_corner = do_mcmc
+    if plot_mcmc_samples is None:
+        plot_mcmc_samples = do_mcmc
+    if plot_mcmc_walkers is None:
+        plot_mcmc_walkers = do_mcmc
+    
+
     dp, dn = load_dicts()
 
     if (kx not in list(dp.keys())) or (ky not in list(dp.keys())):
@@ -175,13 +261,13 @@ def plot_me(kx, ky,
     ax.grid(True)
 
     if do_fit:
-        pars=simple_fit(kx, ky, quiet)
+        pars=analysis_functions.simple_fit(kx, ky, dp, dn, quiet)
         if plot_fit:
             xx = np.linspace(_min-0.1*(_max-_min), _max+0.1*(_max-_min))
             ax.plot(xx, xx*pars[0]+pars[1], c='k', ls='--')
 
     if do_mcmc:
-        samples, flat_samples = mcmc_fit(kx, ky, nstep=nstep_mcmc, mcmc_scale=mcmc_scale, n_walkers=nwalkers_mcmc)
+        samples, flat_samples = analysis_functions.mcmc_fit(kx, ky, dp, dn, quiet=quiet, nstep=nstep_mcmc, mcmc_scale=mcmc_scale, n_walkers=nwalkers_mcmc)
         if plot_mcmc_samples:
             xx = np.linspace(_min-0.1*(_max-_min), _max+0.1*(_max-_min))
             for j in range(100):
@@ -217,141 +303,6 @@ def plot_me(kx, ky,
                 return fig, fig2, fig3
             return fig, fig2
     return fig
-
-
-def simple_fit(kx, ky, 
-               quiet=True):
-    
-    dp, dn = load_dicts()
-
-    dx_p = dp[kx]
-    dy_p = dp[ky]
-
-    j = 0
-    for i in range(len(dp['Name'])):
-        if (dx_p[i][0] > 0) and (dy_p[i][0] > 0):
-            if j == 0:
-                data_x = [dx_p[i][0]]
-                data_y = [dy_p[i][0]]
-                j+=1
-            else:
-                data_x += [dx_p[i][0]]
-                data_y += [dy_p[i][0]]
-
-
-    if ('Plateau' not in kx) and ('Plateau' not in ky): 
-        dx_n = dn[kx]
-        dy_n = dn[ky]
-        for i in range(len(dn['Name'])):
-            if (dx_n[i][0] > 0) and (dy_n[i][0] > 0):
-                data_x += [dx_n[i][0]]
-                data_y += [dy_n[i][0]]
-    
-    data_x = np.asarray(data_x)
-    data_y = np.asarray(data_y)
-
-    fit = linregress(data_x, data_y)
-    if not quiet:
-        print('\n', 'Linear regression slope = ', fit.slope, '±',  fit.stderr, '\n', 'Linear regression p-value = ', fit.pvalue)
-    m, c, p = fit.slope, fit.intercept, fit.pvalue
-
-    kt = kendalltau(data_x, data_y)
-    if not quiet:
-        print('\n Kendall tau statistic = ',kt[0],'\n','Kendall tau p-value = ', kt[1])
-    ktv, ktp = kt[0], kt[1]
-
-    
-    scatter= np.std(data_y-(m*data_x+c))
-    if not quiet:
-        print ('\n rsm y-model(x):', scatter, '\n')
-
-
-    return [m, c, p, ktv, ktp, scatter]
-
-
-
-def mcmc_fit(kx, ky, 
-             nstep = 10000,
-             mcmc_scale=0,
-             n_walkers=32,
-             f_discard=0.5):
-    
-    dp, dn = load_dicts()
-
-    dx_p = dp[kx]
-    dy_p = dp[ky]
-
-    j = 0
-    for i in range(len(dp['Name'])):
-        if (dx_p[i][0] > 0) and (dy_p[i][0] > 0):
-            if j == 0:
-                data_x = [dx_p[i][0]]
-                data_y = [dy_p[i][0]]
-                err_y = [np.mean([dy_p[i][1], dy_p[i][2]])]
-                j+=1
-            else:
-                data_x += [dx_p[i][0]]
-                data_y += [dy_p[i][0]]
-                err_y += [np.mean([dy_p[i][1], dy_p[i][2]])]
-
-
-    if ('Plateau' not in kx) and ('Plateau' not in ky): 
-        dx_n = dn[kx]
-        dy_n = dn[ky]
-        for i in range(len(dn['Name'])):
-            if (dx_n[i][0] > 0) and (dy_n[i][0] > 0):
-                data_x += [dx_n[i][0]]
-                data_y += [dy_n[i][0]]
-                err_y += [np.mean([dy_p[i][1], dy_p[i][2]])]
-    
-    data_x = np.asarray(data_x)
-    data_y = np.asarray(data_y)
-    err_y = np.asarray(err_y)
-
-    def log_lklihood(pars, data):
-        a, b, eps = pars[0], pars[1], pars[2]
-        x_dat, y_dat, y_err = data[0], data[1], data[2]
-        mod = a * x_dat + b - a * mcmc_scale
-        sigma2 = y_err**2 + eps**2
-        lkl = - np.sum((mod - y_dat)**2/sigma2 + np.log(sigma2))
-        return lkl
-
-    def log_prior(pars):
-        a, b, eps = pars[0], pars[1], pars[2]
-        if eps < 0:
-            return -np.inf
-        return 0
-
-    def log_prob(pars, data):
-        lp = log_prior(pars)
-        if not np.isfinite(lp):
-            return -np.inf
-        return lp + log_lklihood(pars, data)
-
-    def n_log_prob(pars, data):
-        return -log_prob(pars, data)
-
-    pars = simple_fit(kx, ky, quiet=True)
-    
-    import warnings
-    warnings.filterwarnings("ignore")
-    soln = minimize(n_log_prob, [pars[0], pars[1]+mcmc_scale*pars[0], 1], args=[data_x, data_y, err_y])
-    
-    pos = soln.x[:3] + 1e-4 * np.random.randn(n_walkers, 3) 
-    nwalkers, ndim = pos.shape
-
-
-    sampler = emcee.EnsembleSampler(
-        nwalkers, ndim, log_prob, args=[[data_x, data_y, err_y]])
-    sampler.run_mcmc(pos, nstep, progress=True)
-    warnings.filterwarnings("default")
-
-    n_discard = int(f_discard*nstep)
-
-    samples = sampler.get_chain()
-    flat_samples = samples[n_discard:].reshape((-1, ndim))
-
-    return samples, flat_samples
 
 
 
