@@ -27,6 +27,8 @@ import plot_utils## plot styling
 import analysis_functions## analysis functions from the paper 
 
 def main():
+    plot_utils.format_plots_like_paper()
+    
     ## Plot galaxy mass versus black hole mass measured form the TDE plateau luminosity. 
     kx = 'Galaxy mass'## X-variable
     ky = 'Plateau black hole mass'## Y-variable. 

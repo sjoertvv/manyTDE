@@ -17,6 +17,8 @@ import read_catalog_and_plot
 
 
 def main():
+    plot_utils.format_plots_like_paper()
+    
     ## Load Greene et al. 2020 black hole masses and velocity dispersions.  
     s, err_s_low, err_s_up, m, err_m_low, err_m_up = get_greene_m_sigmas()
     

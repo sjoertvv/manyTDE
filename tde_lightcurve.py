@@ -13,9 +13,11 @@ import json
 import matplotlib.pyplot as plt 
 import numpy as np 
 
-from plot_utils import marker_dict, lc_color_dict
+import plot_utils
 
 def main():
+	plot_utils.format_plots_like_paper()
+	
 	"""
 	An example using the TDE AT2019dsg.  
 	"""
@@ -59,9 +61,9 @@ def plot_tde(tde_name='ASASSN-14li'):
 		ax.errorbar(lc_rec[idx]['mjd']-mjd0, 
 				flux_corr, 
 				lc_rec[idx]['e_flux_Jy']*1e6,
-				fmt=marker_dict[flt], 
+				fmt=plot_utils.marker_dict[flt], 
 				alpha=0.9,
-				color=lc_color_dict[flt],
+				color=plot_utils.lc_color_dict[flt],
 				label=flt)
 
 	ax.set_title(tde_name)
