@@ -17,7 +17,7 @@ This catalog contains:
 -  the features of the TDE lightcurve (eg, peak luminosity, decay time, plateau luminosity);
 -  our estimates of the black hole mass (eg, based on the plateau luminosity).
 
-The full list of catalog columns is described below.  
+The full list of catalogue columns is described below.  
 
 ## Lightcurves
 For all TDEs we also provide the optical/UV light curves in the `/data/lightcurves/` folder. A script to get or plot these data is also provided. 
