@@ -6,11 +6,12 @@ This repository containts the data that was used in [Mummery, van Velzen et al. 
 
 ## Catalogue
 The main catalogue is stored in a Python pickle file. A script to read and reproduce some key figures from the paper is provided. 
-We split the catalogues into those TDEs with and without measured plateaus for convinience. 
 
 `>> python3 read_catalog_and_plot.py`
 
-This catalog contains: 
+This requires the `corner` and `emcee` packages (install with pip). 
+
+We split the catalogues into those TDEs with and without measured plateaus for convinience. The catalog contains: 
 -  the basic info (name, coordinates, redshift);
 -  host galaxy info (eg, mass, velocity dispersion);
 -  TDE spectral type (if available)
