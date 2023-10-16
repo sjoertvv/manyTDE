@@ -17,7 +17,8 @@ import read_catalog_and_plot
 
 
 def main():
-    plot_utils.format_plots_like_paper()
+    
+    #plot_utils.format_plots_like_paper()
     
     ## Load Greene et al. 2020 black hole masses and velocity dispersions.  
     s, err_s_low, err_s_up, m, err_m_low, err_m_up = get_greene_m_sigmas()
@@ -33,6 +34,7 @@ def main():
 
 
     i_plot_s = (s_tde>0)*(m_tde>0)## Only plot TDEs with relevant data. 
+    
     plt.scatter(s, m)
     plt.scatter(s_tde[i_plot_s], m_tde[i_plot_s])
 
@@ -40,6 +42,7 @@ def main():
     i_plot_g = (g_tde>0)*(m_tde>0)## Only plot TDEs with relevant data. 
     plt.scatter(g, mg)
     plt.scatter(g_tde[i_plot_g], m_tde[i_plot_g])
+
 
     plt.show()
 
@@ -113,4 +116,7 @@ def get_greene_m_galaxy():
     return g_val, g_err_down, g_err_up, m_val, m_err_down, m_err_up
 
 if __name__ == "__main__":
+    
     main()
+    plt.pause(0.2)    
+    key = input('done (press any key to exit)')

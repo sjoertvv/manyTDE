@@ -44,9 +44,9 @@ marker_dict['F150LP'] = 'd'
 marker_dict['F225W'] = '*'
 
 def format_plots_like_paper():
-  """ Makes the figures have the same formatting as the paper. """
-  plt.rc('text', usetex=True)
-  plt.rc('font', family='serif')
+  """ Makes the figures have (almost) the same formatting as the paper. """
+  plt.rc('text', usetex=True)    # switch this to False to match the light curve plots
+  plt.rc('font', family='serif') # switch this to Times to match the light curve plots
   plt.rcParams['xtick.labelsize'] = 18
   plt.rcParams['ytick.labelsize'] = 18
   plt.rcParams['font.size'] = 20

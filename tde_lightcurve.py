@@ -16,21 +16,25 @@ import numpy as np
 import plot_utils
 
 def main():
-	plot_utils.format_plots_like_paper()
+	
+	#plot_utils.format_plots_like_paper() # toggle this to match the formatting of the paper
 	
 	"""
 	An example using the TDE AT2019dsg.  
 	"""
+
+	# Make a Figure
 	_ = plot_tde('AT2019dsg')
 
 
-	### Or you might want to get the data yourself. 
+	### Or you might want to get the data yourself ...
 	lc_dict, filters = get_lightcurve_data('AT2019dsg')
 
-	plt.figure()
-	plt.errorbar(lc_dict[filters[-1]][0], lc_dict[filters[-1]][1], yerr=lc_dict[filters[-1]][2], fmt='o')
+	#  ... and make your own plots
+	# plt.figure()
+	# plt.errorbar(lc_dict[filters[-1]][0], lc_dict[filters[-1]][1], yerr=lc_dict[filters[-1]][2], fmt='o')
 
-	plt.show()
+	# plt.show()
 
 
 
@@ -108,8 +112,9 @@ def get_lightcurve_data(tde_name = 'ASASSN-14li'):
 	return lc_dict, filters
 
 
-
-
-
 if __name__ == "__main__":
+	
 	main()
+
+	plt.pause(0.2)    
+	key = input('done (press any key to exit)')
