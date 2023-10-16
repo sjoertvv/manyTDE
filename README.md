@@ -6,11 +6,12 @@ This repository containts the data that was used in [Mummery, van Velzen et al. 
 
 ## Catalogue
 The main catalogue is stored in a Python pickle file. A script to read and reproduce some key figures from the paper is provided. 
-We split the catalogues into those TDEs with and without measured plateaus for convinience. 
 
 `>> python3 read_catalog_and_plot.py`
 
-This catalog contains: 
+This requires the `corner` and `emcee` packages (install with pip). 
+
+We split the catalogues into those TDEs with and without measured plateaus for convinience. The catalog contains: 
 -  the basic info (name, coordinates, redshift);
 -  host galaxy info (eg, mass, velocity dispersion);
 -  TDE spectral type (if available)
@@ -55,10 +56,10 @@ Peak radius                          : Radius (cm) from blackbody fit to early t
 Energy radiated g-band               : Energy radiated in the early time g-band light curve (erg).
 Rise timescale                       : Rise timescale parameter (days) from early time model.
 Decay timescale                      : Exponential decay timescale parameter (days) from early time model.
-Galaxy mass                          : Mass of host galaxy from spectroscopic fitting (Solar masses). 
+Galaxy mass                          : Stellar mass of host galaxy from its photometry (Solar masses). 
 Velocity dispersion                  : Velocity dispersion of host galaxy (km/s).
 Plateau black hole mass              : Black hole mass inferred from plateau luminosity (Solar masses). 
 Peak black hole mass                 : Black hole mass inferred from peak luminosity (Solar masses). 
-Energy radiated  black hole mass     : Black hole mass inferred from green band energy radiated (Solar masses).
+Energy radiated  black hole mass     : Black hole mass inferred from g-band energy radiated (Solar masses).
 Units                                : List of the dimensions of all quantities. 
 ```
