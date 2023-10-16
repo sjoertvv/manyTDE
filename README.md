@@ -55,10 +55,10 @@ Peak radius                          : Radius (cm) from blackbody fit to early t
 Energy radiated g-band               : Energy radiated in the early time g-band light curve (erg).
 Rise timescale                       : Rise timescale parameter (days) from early time model.
 Decay timescale                      : Exponential decay timescale parameter (days) from early time model.
-Galaxy mass                          : Mass of host galaxy from spectroscopic fitting (Solar masses). 
+Galaxy mass                          : Stellar mass of host galaxy from its photometry (Solar masses). 
 Velocity dispersion                  : Velocity dispersion of host galaxy (km/s).
 Plateau black hole mass              : Black hole mass inferred from plateau luminosity (Solar masses). 
 Peak black hole mass                 : Black hole mass inferred from peak luminosity (Solar masses). 
-Energy radiated  black hole mass     : Black hole mass inferred from green band energy radiated (Solar masses).
+Energy radiated  black hole mass     : Black hole mass inferred from g-band energy radiated (Solar masses).
 Units                                : List of the dimensions of all quantities. 
 ```
