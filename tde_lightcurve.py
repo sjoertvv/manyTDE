@@ -34,6 +34,10 @@ def main():
 	# plt.figure()
 	# plt.errorbar(lc_dict[filters[-1]][0], lc_dict[filters[-1]][1], yerr=lc_dict[filters[-1]][2], fmt='o')
 
+
+	plt.pause(0.2)    
+	key = input('done (press any key to exit)')
+
 	# plt.show()
 
 
@@ -113,8 +117,5 @@ def get_lightcurve_data(tde_name = 'ASASSN-14li'):
 
 
 if __name__ == "__main__":
-	
 	main()
 
-	plt.pause(0.2)    
-	key = input('done (press any key to exit)')

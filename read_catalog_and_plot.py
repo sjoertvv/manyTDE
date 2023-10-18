@@ -72,6 +72,10 @@ def main():
 
     plt.show()
 
+    plt.pause(0.2)    
+    key = input('done (press any key to exit)')
+
+
 
 
 def get_pars(k):
@@ -309,8 +313,4 @@ def plot_me(kx, ky,
 
 
 if __name__ == "__main__":
-    
     main()
-
-    plt.pause(0.2)    
-    key = input('done (press any key to exit)')

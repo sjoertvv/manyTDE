@@ -46,6 +46,8 @@ def main():
 
     plt.show()
 
+    plt.pause(0.2)    
+    key = input('done (press any key to exit)')
 
 
 def load_greene_dicts():
@@ -115,8 +117,6 @@ def get_greene_m_galaxy():
     
     return g_val, g_err_down, g_err_up, m_val, m_err_down, m_err_up
 
-if __name__ == "__main__":
-    
+if __name__ == "__main__":    
     main()
-    plt.pause(0.2)    
-    key = input('done (press any key to exit)')
+
