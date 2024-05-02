@@ -28,7 +28,7 @@ def main():
 
 
 	### Or you might want to get the data yourself ...
-	lc_dict, filters = get_lightcurve_data('AT2019dsg')
+	lc_dict, filters, frequency_Hz = get_lightcurve_data('AT2019dsg')
 
 	#  ... and make your own plots
 	# plt.figure()
@@ -46,7 +46,7 @@ def plot_tde(tde_name='ASASSN-14li'):
 	"""
 	Plot the lightcurve of the tde with name tde_name. Returns the lightcurves as a figure.  
 	"""
-	fname = './data/lightcurves/{0}.json'.format(tde_name)
+	fname = './data/sources/{0}.json'.format(tde_name)
 	tde_data = json.load(open(fname,'r'))# Load data. 
 
 	# These conversion are needed because json doesn't store tuples.
@@ -91,7 +91,7 @@ def get_lightcurve_data(tde_name = 'ASASSN-14li'):
 		2. A list of lightcurve filters with available data. 
 	"""
 
-	fname = './data/lightcurves/{0}.json'.format(tde_name)
+	fname = './data/sources/{0}.json'.format(tde_name)
 	tde_data = json.load(open(fname,'r'))# Load data. 
 
 	# These conversion are needed because json doesn't store tuples.
@@ -104,6 +104,7 @@ def get_lightcurve_data(tde_name = 'ASASSN-14li'):
 
 	lc_dict = {}
 	filters = tde_data['lightcurve']['filters']
+	frequency_Hz = tde_data['lightcurve']['frequency_Hz']
 
 	for flt in filters:
 		idx = lc_rec['filter']==flt
@@ -113,7 +114,7 @@ def get_lightcurve_data(tde_name = 'ASASSN-14li'):
 
 		lc_dict[flt] = [lc_rec[idx]['mjd']-mjd0, flux_corr, lc_rec[idx]['e_flux_Jy']*1e6]
 	
-	return lc_dict, filters
+	return lc_dict, filters, frequency_Hz
 
 
 if __name__ == "__main__":
