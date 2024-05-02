@@ -1,11 +1,14 @@
 # manyTDE
-Collection of 63 optically-selected TDEs, with black hole mass measurements based on their light curve properties. 
+A collection optically-selected TDEs. Including light curves and host galaxy properties (mass, velocity dispersion, etc).
+
+For a subset of these sources, we also include black hole mass measurements (see next sections). 
 
 ## Paper
-This repository containts the data that was used in [Mummery, van Velzen et al. 2023](https://ui.adsabs.harvard.edu/abs/2023arXiv230808255M/abstract). Please cite this paper if you use these products. 
+This repository contains black hole mass estimates from [Mummery, van Velzen et al. 2023](https://ui.adsabs.harvard.edu/abs/2023arXiv230808255M/abstract). Please cite this paper if you use these products. 
+
 
 ## Catalogue
-The main catalogue is stored in a Python pickle file. A script to read and reproduce some key figures from the paper is provided. 
+The main catalog of black hole mass catalogue is stored in a Python pickle file. A script to read and reproduce some key figures from the paper is provided. 
 
 `>> python3 read_catalog_and_plot.py`
 
