@@ -24,7 +24,7 @@ We split the catalogues into those TDEs with and without measured plateaus for c
 The full list of catalogue columns is described below.  
 
 ## Lightcurves
-For all TDEs we also provide the optical/UV light curves in the `/data/lightcurves/` folder. A script to get or plot these data is also provided. 
+For all TDEs we also provide the optical/UV light curves in the `/data/sources/` folder. A script to get or plot these data is also provided. 
 
 `>> python3 tde_lightcurve.py`
 
