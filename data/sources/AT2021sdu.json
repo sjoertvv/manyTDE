@@ -10,7 +10,7 @@
    "peak_limit": false,
    "spectral_type": "H+He",
    "spectral_subtype": "-",
-   "paper_ref": "2023arXiv23030",
+   "paper_ref": "2023ApJ...955L...6Y",
    "nickname": "ToroCalican",
    "extinction": {
       "note": "\nExinction due to Galatic absorption to be applied to the TDE light.\nE(B-V) based on from maps of Schlegel, Finkbeiner & Davis (1998).\nWe use a blackbody with T=3e4K to find the linear extinction in each optical/UV band (similar to A_nu), \nwe also give the ratio of total-to-selective extinction (R_nu)\n",
