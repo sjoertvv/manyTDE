@@ -115,7 +115,7 @@
    "host": {
       "vel_disp_km/s": 225.0,
       "e_vel_disp_km/s": 15.0,
-      "vel_disp_source": "Kruhler et al. 2018A%26A...610A..14K",
+      "vel_disp_source": "2018A%26A...610A..14K",
       "note": "\nThe \"observations\" key constains the observed magnitudes, corrected for Galactic extinction. \nThe \"model\" key containts output from Prospector with FSPS (e.g., stellar mass). \nEach parameter is [median, lower, upper] range of the 68%CL interval.\nWe also give the synthetic observed magnitudes, these are also corrected for Galactic extinction. \nTo reverse the Galactic extinction correction, use the \"R_nu\" key.\nParameters with .0 indicate magnitudes in the galaxy rest-frame.\n",
       "Hubble_h": 0.7,
       "observations": {
