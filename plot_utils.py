@@ -13,6 +13,9 @@ for surv in ['ztf','ps','sdss']:
   lc_color_dict['r.'+surv] = 'r'
   lc_color_dict['i.'+surv] = 'brown'
 
+lc_color_dict['W1.wise'] = 'goldenrod'
+lc_color_dict['W2.wise'] = 'saddlebrown'
+
 lc_color_dict['UVW2.uvot'] = 'violet'
 lc_color_dict['UVM2.uvot'] = 'magenta'
 lc_color_dict['UVW1.uvot'] = 'fuchsia'
@@ -38,6 +41,9 @@ marker_dict['UVM2.uvot'] = 's'
 marker_dict['UVW2.uvot'] = 's'
 
 marker_dict['r.ztf'] = 's'
+
+marker_dict['W1.wise'] = '*'
+marker_dict['W2.wise'] = '*'
 
 marker_dict['F125LP'] = '*'
 marker_dict['F150LP'] = 'd'
