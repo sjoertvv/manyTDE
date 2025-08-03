@@ -423,5 +423,106 @@
          }
       }
    },
-   "lightcurve": {}
+   "lightcurve": {
+      "note": "\nThe flux is not corrected for Galactic extinction, but the extinction correction \nper band is provided in this dataframe (under the \"extinction\" key). \nMJD is as observed (ie, no correction for time dilation)\n",
+      "filters": [
+         "U.uvot",
+         "UVM2.uvot",
+         "UVW1.uvot",
+         "UVW2.uvot"
+      ],
+      "frequency_Hz": [
+         872815357550259.6,
+         1346484181597652.0,
+         1198891057872408.0,
+         1492659946412262.2
+      ],
+      "uvot_aperture_arcsec": 5.0,
+      "header": [
+         "mjd",
+         "filter",
+         "flux_Jy",
+         "e_flux_Jy"
+      ],
+      "dtype": [
+         [
+            "mjd",
+            "<f8"
+         ],
+         [
+            "filter",
+            "<U9"
+         ],
+         [
+            "flux_Jy",
+            "<f8"
+         ],
+         [
+            "e_flux_Jy",
+            "<f8"
+         ]
+      ],
+      "data": [
+         [
+            60625.158845,
+            "UVW2.uvot",
+            5.1534e-07,
+            4.7132e-06
+         ],
+         [
+            60861.566781,
+            "UVW2.uvot",
+            6.2761e-06,
+            2.1659e-06
+         ],
+         [
+            60865.385668,
+            "UVW2.uvot",
+            -1.7179e-06,
+            6.9539e-06
+         ],
+         [
+            60862.14187,
+            "UVM2.uvot",
+            -2.0133e-06,
+            4.2952e-06
+         ],
+         [
+            60859.026694,
+            "UVW1.uvot",
+            -1.0748e-06,
+            4.4109e-06
+         ],
+         [
+            60863.901685,
+            "UVW1.uvot",
+            7.5539e-07,
+            3.0367e-06
+         ],
+         [
+            60624.564526,
+            "U.uvot",
+            -6.5057e-06,
+            5.111e-06
+         ],
+         [
+            60692.689666,
+            "U.uvot",
+            1.5991e-06,
+            4.5421e-06
+         ],
+         [
+            60856.109794,
+            "U.uvot",
+            -9.891e-06,
+            5.9955e-06
+         ],
+         [
+            60860.713974,
+            "U.uvot",
+            -4.0137e-06,
+            7.0243e-06
+         ]
+      ]
+   }
 }
