@@ -3,16 +3,25 @@ A collection optically-selected TDEs. Including light curves and host galaxy pro
 
 For a subset of these sources, we also include black hole mass measurements (see next sections). 
 
-## Paper
+## Install
+In the folder that contain setup.py, run "python3 -m pip install -e ."
+
+The -e option is needed such that the data/ directory can be seen by the scripts that read this.  
+
+## Useage and acknowledgements
 This repository contains black hole mass estimates from [Mummery, van Velzen et al. 2023](https://ui.adsabs.harvard.edu/abs/2023arXiv230808255M/abstract). Please cite this paper if you use these products. 
 
+This repository get priodically updated with new data (either new TDEs or new data of known sources). When using this data, please cite the discovery papers (ADS keys are included for each source) and also the version number of this repository.
 
-## Catalogue
-The main catalog of black hole mass catalogue is stored in a Python pickle file. A script to read and reproduce some key figures from the paper is provided. 
+## Lightcurves
+For all TDEs we also provide the optical/UV light curves in the `/data/sources/` folder. A script to get or plot these data is also provided. 
+
+`>> python3 tde_lightcurve.py`
+
+## Catalogue from 2023 paper
+The main catalog of black hole masses from [Mummery, van Velzen et al. 2023](https://ui.adsabs.harvard.edu/abs/2023arXiv230808255M/abstract) is stored in a Python pickle file. A script to read and reproduce some key figures from the paper is provided. 
 
 `>> python3 read_catalog_and_plot.py`
-
-This requires the `corner` and `emcee` packages (install with pip). 
 
 We split the catalogues into those TDEs with and without measured plateaus for convinience. The catalog contains: 
 -  the basic info (name, coordinates, redshift);
@@ -22,11 +31,6 @@ We split the catalogues into those TDEs with and without measured plateaus for c
 -  our estimates of the black hole mass (eg, based on the plateau luminosity).
 
 The full list of catalogue columns is described below.  
-
-## Lightcurves
-For all TDEs we also provide the optical/UV light curves in the `/data/sources/` folder. A script to get or plot these data is also provided. 
-
-`>> python3 tde_lightcurve.py`
 
 
 ## Dynamical black hole mass measurements 
