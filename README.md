@@ -4,9 +4,9 @@ A collection optically-selected TDEs. Including light curves and host galaxy pro
 For a subset of these sources, we also include black hole mass measurements (see next sections). 
 
 ## Install
-In the folder that contain setup.py, run "python3 -m pip install -e ."
+In the folder that contain setup.py, run `python3 -m pip install -e .`
 
-The -e option is needed such that the data/ directory can be seen by the scripts that read this.  
+The `-e` option is needed such that the `data/` directory can be seen by the scripts that read this.  
 
 ## Useage and acknowledgements
 This repository contains black hole mass estimates from [Mummery, van Velzen et al. 2023](https://ui.adsabs.harvard.edu/abs/2023arXiv230808255M/abstract). Please cite this paper if you use these products. 
