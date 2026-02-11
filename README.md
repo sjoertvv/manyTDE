@@ -11,7 +11,7 @@ The -e option is needed such that the data/ directory can be seen by the scripts
 ## Useage and acknowledgements
 This repository contains black hole mass estimates from [Mummery, van Velzen et al. 2023](https://ui.adsabs.harvard.edu/abs/2023arXiv230808255M/abstract). Please cite this paper if you use these products. 
 
-This repository get priodically updated with new data (either new TDEs or new data of known sources). When using this data, please cite the discovery papers (ADS keys are included for each source) and also the version number of this repository.
+This repository get periodically updated with new data (either new TDEs or new data of known sources). When using this data, please cite the discovery papers (ADS keys are included for each source) and also the version number of this repository.
 
 ## Lightcurves
 For all TDEs we also provide the optical/UV light curves in the `/data/sources/` folder. A script to get or plot these data is also provided. 
@@ -23,7 +23,7 @@ The main catalog of black hole masses from [Mummery, van Velzen et al. 2023](htt
 
 `>> python3 read_catalog_and_plot.py`
 
-We split the catalogues into those TDEs with and without measured plateaus for convinience. The catalog contains: 
+We split the catalogues into those TDEs with and without measured plateaus for convenience. The catalog contains: 
 -  the basic info (name, coordinates, redshift);
 -  host galaxy info (eg, mass, velocity dispersion);
 -  TDE spectral type (if available)
@@ -42,7 +42,7 @@ Scripts for loading and plotting these data can be found in
 
 ***
 
-## Full catalogue describtion
+## Full catalogue description
 
 All of the physical parameters below are measured in log10; first entry is the median of the posterior. The second and third columns are the 68% confidence level interval, ordered by (lower, upper).
 The first 5 entries (Name, Redshift, RA, DEC and Spectral type) do not have uncertainties and are one dimensional. 
@@ -60,7 +60,7 @@ Peak g-band                          : vL_v at peak at v = 6 x 10^14 Hz. (Rest f
 Peak bolometric                      : Peak bolometric luminosity (from black body fit, erg/s).
 Peak temperature                     : Temperature (K) from blackbody fit to early times.
 Peak radius                          : Radius (cm) from blackbody fit to early times.
-Energy radiated g-band               : Energy radiated in the early time g-band light curve (erg).
+Energy radiated g-band               : Energy radiated in the early time g-band lightcurve (erg).
 Rise timescale                       : Rise timescale parameter (days) from early time model.
 Decay timescale                      : Exponential decay timescale parameter (days) from early time model.
 Galaxy mass                          : Stellar mass of host galaxy from its photometry (Solar masses). 
