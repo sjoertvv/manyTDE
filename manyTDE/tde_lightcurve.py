@@ -13,7 +13,7 @@ import json
 import matplotlib.pyplot as plt 
 import numpy as np 
 
-import plot_utils
+from . import plot_utils
 
 from pathlib import Path
 we_are_here = Path(__file__).resolve().parent # note, this only work as path to data if we install with pip -e
