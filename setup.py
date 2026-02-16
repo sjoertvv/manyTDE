@@ -5,18 +5,19 @@
 #       )
 
 from setuptools import setup
-import os.path
+from pathlib import Path
 import json
 
 exts =[] 
 
 def read(rel_path):
-      here = os.path.abspath(os.path.dirname(__file__))
-      with open(os.path.join(here, rel_path), 'r', encoding='utf8') as fp:
+      we_are_here = Path(__file__).resolve().parent
+      with open(we_are_here / rel_path, 'r', encoding='utf8') as fp:
             return fp.read()
 
 def get_version():
-      return json.load(open("manyTDE/data/sources/AT2019dsg.json",'rb'))["catalog_version"]
+      we_are_here = Path(__file__).resolve().parent
+      return json.load(open(we_are_here / "manyTDE/data/sources/AT2019dsg.json",'rb'))["catalog_version"]
       raise RuntimeError("Unable to find version string.")    
   
     
